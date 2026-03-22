@@ -23,10 +23,10 @@ function initSmoothScroll() {
 function initTyping() {
   // Edit the rotating hero messages here
   const phrases = [
-    'Cybersecurity Student & Researcher',
-    'Breaking & building to learn',
-    'Currently exploring web app security',
-    'CTF player | Threat modeling enthusiast'
+    'IAM & Cloud Security Engineer',
+    'Python automation for security operations',
+    'Okta | SailPoint | Cloudflare WAF',
+    'MSc Cyber Security @ Lancaster (2025–2026)'
   ];
   const el = document.getElementById('typing');
   const typeDelay = 80;
@@ -75,11 +75,11 @@ function initProjectReveals() {
 
 function initTerminal() {
   const logs = [
-    '[OK] Boot sequence complete.',
-    '[SCAN] Recon scheduled for 22:00 IST.',
-    '[NOTE] Reviewing latest CVEs and advisories.',
-    '[TASK] Drafting write-up for weekend CTF.',
-    '[SYNC] Repo mirrored to GitHub.'
+    '[OK] IAM automations loaded (Okta / SailPoint / Beyond Identity).',
+    '[TASK] Cloudflare WAF rollout plan validated with OWASP + custom rules.',
+    '[NOTE] CompTIA Security+ and Okta Professional certifications verified.',
+    '[STUDY] MSc Cyber Security modules: risk, forensics, pen testing, cyber law.',
+    '[PROJECT] Phishing Page Analyser and restaurant_analysis repos synced.'
   ];
   const list = document.getElementById('log-list');
   const form = document.getElementById('log-form');
