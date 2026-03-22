@@ -188,13 +188,16 @@ function applyTranslations(lang) {
     const code = el.querySelector('code');
     const codeText = el.dataset.code || (code ? code.textContent : '');
     if (codeText && text.includes('{code}')) {
-      const [before, after] = text.split('{code}');
+      const parts = text.split('{code}');
       el.textContent = '';
-      if (before) el.append(document.createTextNode(before));
-      const codeEl = document.createElement('code');
-      codeEl.textContent = codeText;
-      el.append(codeEl);
-      if (after) el.append(document.createTextNode(after));
+      parts.forEach((part, idx) => {
+        if (part) el.append(document.createTextNode(part));
+        if (idx < parts.length - 1) {
+          const codeEl = document.createElement('code');
+          codeEl.textContent = codeText;
+          el.append(codeEl);
+        }
+      });
       return;
     }
     if ('value' in el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT')) {
@@ -337,7 +340,7 @@ function initTerminal() {
     e.preventDefault();
     const value = input.value.trim();
     if (!value) return;
-    // Normalize consecutive spaces between command and payload (input was trimmed).
+    // Normalize consecutive spaces between command and payload (input is already trimmed).
     const [command, ...rest] = value.split(/\s+/);
     const normalizedCommand = command.toLowerCase();
     if (commandHandlers[normalizedCommand]) {
