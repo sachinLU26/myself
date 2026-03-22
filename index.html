@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sachin Sahil | Cybersecurity Student</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <div class="scanlines"></div>
+  <header class="topbar">
+    <div class="logo">/root> <span class="accent">console</span></div>
+    <nav>
+      <ul>
+        <li><a href="#hero">home</a></li>
+        <li><a href="#about">about</a></li>
+        <li><a href="#skills">skills</a></li>
+        <li><a href="#projects">projects</a></li>
+        <li><a href="#timeline">timeline</a></li>
+        <li><a href="#terminal">terminal</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" class="panel hero">
+      <div class="hero-text">
+        <!-- Edit your name here -->
+        <p class="eyebrow">ACCESS GRANTED</p>
+        <h1 class="glitch" data-text="Sachin Sahil">Sachin Sahil</h1>
+        <!-- Edit your tagline here -->
+        <p class="tagline"><span id="typing"></span><span class="cursor">▋</span></p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">view projects</a>
+          <a class="btn ghost" href="#contact">initiate contact</a>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <div class="stat-card">
+          <p class="label">role</p>
+          <p class="value">Cybersecurity Student &amp; Researcher</p>
+        </div>
+        <div class="stat-card">
+          <p class="label">location</p>
+          <p class="value">Chandigarh, India</p>
+        </div>
+        <div class="stat-card">
+          <p class="label">status</p>
+          <p class="value accent">AVAILABLE FOR INTERNSHIPS</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="panel grid-2">
+      <div>
+        <h2>// about_me</h2>
+        <!-- Edit your bio here -->
+        <p class="muted">Curious mind exploring the intersections of networks, application security, and digital forensics. I love building tiny tools, analyzing exploits, and sharing what I learn.</p>
+        <p class="muted">Outside security labs, you'll find me documenting experiments, contributing to open-source write-ups, and gamifying learning.</p>
+      </div>
+      <div class="badge-list">
+        <div class="badge">network defense</div>
+        <div class="badge">ctf player</div>
+        <div class="badge">threat modeling</div>
+        <div class="badge">scripting</div>
+      </div>
+    </section>
+
+    <section id="skills" class="panel">
+      <h2>// skills_matrix</h2>
+      <div class="skills-grid">
+        <!-- Update skills and percentages here -->
+        <div class="skill">
+          <div class="skill-top">
+            <span>Web App Security</span>
+            <span>80%</span>
+          </div>
+          <div class="bar"><span style="width: 80%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top">
+            <span>Network Analysis</span>
+            <span>75%</span>
+          </div>
+          <div class="bar"><span style="width: 75%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top">
+            <span>Python &amp; Bash</span>
+            <span>70%</span>
+          </div>
+          <div class="bar"><span style="width: 70%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top">
+            <span>Threat Hunting</span>
+            <span>65%</span>
+          </div>
+          <div class="bar"><span style="width: 65%"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="panel">
+      <h2>// projects_log</h2>
+      <div class="projects-grid">
+        <!-- Update project cards here -->
+        <article class="project-card">
+          <div class="card-header">
+            <p class="label">project</p>
+            <h3>VulnScanner</h3>
+          </div>
+          <p class="muted">Lightweight Python utility to surface common web misconfigurations with colored CLI output.</p>
+          <div class="chip-row">
+            <span class="chip">Python</span>
+            <span class="chip">OWASP</span>
+            <span class="chip">CLI</span>
+          </div>
+          <button class="btn ghost reveal" aria-expanded="false">show log</button>
+          <div class="reveal-content" hidden>
+            <ul>
+              <li>Built modular checks for headers, TLS, and auth leaks.</li>
+              <li>Integrated live progress feed for quick triage.</li>
+              <li>Designed for quick-drop on lab targets.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="card-header">
+            <p class="label">project</p>
+            <h3>PacketViz</h3>
+          </div>
+          <p class="muted">Interactive packet timeline to visualize suspicious flows from PCAP slices.</p>
+          <div class="chip-row">
+            <span class="chip">JavaScript</span>
+            <span class="chip">D3</span>
+            <span class="chip">Security</span>
+          </div>
+          <button class="btn ghost reveal" aria-expanded="false">show log</button>
+          <div class="reveal-content" hidden>
+            <ul>
+              <li>Timeline heatmap highlights anomalies per host.</li>
+              <li>Keyboard shortcuts for zoom + filter.</li>
+              <li>Reusable parsing utilities for quick labs.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="card-header">
+            <p class="label">project</p>
+            <h3>CTF Notes</h3>
+          </div>
+          <p class="muted">Centralized collection of write-ups, payload snippets, and checklists.</p>
+          <div class="chip-row">
+            <span class="chip">Markdown</span>
+            <span class="chip">Playbooks</span>
+            <span class="chip">Automation</span>
+          </div>
+          <button class="btn ghost reveal" aria-expanded="false">show log</button>
+          <div class="reveal-content" hidden>
+            <ul>
+              <li>Tag-based search to jump to tactics.</li>
+              <li>CLI export to printable PDFs.</li>
+              <li>Snippets auto-sync to templates.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="timeline" class="panel">
+      <h2>// experience_timeline</h2>
+      <div class="timeline">
+        <!-- Update timeline entries here -->
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <p class="label">2024 — Present</p>
+            <h3>B.Tech in Computer Science (Cybersecurity)</h3>
+            <p class="muted">Chandigarh University — focusing on network security, secure coding, and digital forensics.</p>
+          </div>
+        </div>
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <p class="label">2023 — Present</p>
+            <h3>CTF &amp; Security Research</h3>
+            <p class="muted">Competing in capture-the-flag events, reverse engineering basic binaries, documenting vulnerabilities.</p>
+          </div>
+        </div>
+        <div class="event">
+          <div class="dot"></div>
+          <div class="content">
+            <p class="label">2022</p>
+            <h3>Community Workshops</h3>
+            <p class="muted">Hosted intro sessions on safe browsing, password hygiene, and simple recon techniques for students.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="terminal" class="panel">
+      <div class="terminal-head">
+        <h2>// terminal_feed</h2>
+        <p class="muted">Recent activity logs</p>
+      </div>
+      <div class="terminal-window" role="log" aria-live="polite">
+        <ul id="log-list"></ul>
+      </div>
+      <form id="log-form" class="terminal-input" autocomplete="off">
+        <label for="log-entry">Add entry:</label>
+        <input id="log-entry" name="log-entry" type="text" placeholder="Type a custom log line..." />
+        <button type="submit" class="btn primary">push</button>
+      </form>
+    </section>
+
+    <section id="contact" class="panel grid-2">
+      <div>
+        <h2>// contact</h2>
+        <p class="muted">Always excited to collaborate on security research, tooling, and teaching.</p>
+      </div>
+      <div class="contact-grid">
+        <!-- Update contact links here -->
+        <a class="contact-card" href="mailto:sachin.sahil@proton.me">
+          <span>✉️</span>
+          <div>
+            <p class="label">email</p>
+            <p>sachin.sahil@proton.me</p>
+          </div>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/sachinsahil" target="_blank" rel="noopener noreferrer">
+          <span>🔗</span>
+          <div>
+            <p class="label">linkedin</p>
+            <p>linkedin.com/in/sachinsahil</p>
+          </div>
+        </a>
+        <a class="contact-card" href="https://github.com/sachinLU26" target="_blank" rel="noopener noreferrer">
+          <span>💻</span>
+          <div>
+            <p class="label">github</p>
+            <p>github.com/sachinLU26</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="panel footer">
+    <p>Built with HTML + CSS + JS — styled like a retro console. Stay curious.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
