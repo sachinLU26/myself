@@ -106,7 +106,6 @@ function initTerminal() {
       const body = encodeURIComponent(`${greeting}\n\n${custom}`);
       const subject = encodeURIComponent('Hello from your portfolio');
       logs.push('[CMD] Opening email composer with greeting...');
-      renderLogs();
       window.location.href = `mailto:sahi2959@gmail.com?subject=${subject}&body=${body}`;
     },
     certification: () => {
@@ -115,7 +114,6 @@ function initTerminal() {
         '[CERT] Okta Professional Certified — proficiency in admin, policies, lifecycle.',
         '[CERT] Credentials available in certifications section.'
       );
-      renderLogs();
     }
   };
 
@@ -129,6 +127,7 @@ function initTerminal() {
     if (commandHandlers[command]) {
       logs.push(`[CMD] ${command}`);
       commandHandlers[command]();
+      renderLogs();
     } else {
       logs.push(`[USER] ${value}`);
       renderLogs();
