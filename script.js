@@ -104,7 +104,7 @@ const translations = {
     terminal_title: '// टर्मिनल_फीड',
     terminal_subtitle: 'हाल की गतिविधि लॉग',
     terminal_legend: 'लीजेंड',
-    terminal_hint_email: 'सलाम के साथ ईमेल खोलें',
+    terminal_hint_email: 'नमस्ते के साथ ईमेल खोलें',
     terminal_hint_cert: 'प्रमाणपत्र सूचीबद्ध करें',
     terminal_hint_user: 'किसी भी टेक्स्ट को',
     terminal_hint_entry: 'एंट्री के रूप में लॉग किया जाता है',
