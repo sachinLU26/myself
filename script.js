@@ -186,6 +186,7 @@ function applyTranslations(lang) {
     const text = dict[key] || fallback[key];
     if (!text) return;
     const code = el.querySelector('code');
+    // dataset.code (if present) takes precedence over inline code content to keep translations consistent.
     const codeText = el.dataset.code || (code ? code.textContent : '');
     if (codeText && text.includes('{code}')) {
       const parts = text.split('{code}');
@@ -341,7 +342,7 @@ function initTerminal() {
     const value = input.value.trim();
     if (!value) return;
     // Normalize consecutive spaces between command and payload (input is already trimmed).
-    const [command, ...rest] = value.split(/\s+/);
+    const [command, ...rest] = value.split(/\s+/).filter(Boolean);
     const normalizedCommand = command.toLowerCase();
     if (commandHandlers[normalizedCommand]) {
       logs.push(`[CMD] ${normalizedCommand}`);
