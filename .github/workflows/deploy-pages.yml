@@ -1,0 +1,43 @@
+name: Deploy static site to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+# Required permissions for GitHub Pages + OIDC deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Ensure only one Pages deployment runs at a time
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # Fetch repository contents so Pages can deploy the current version
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Configure the GitHub Pages deployment environment
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Upload the entire repository root (static HTML/CSS/JS) as the artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./
+
+      # Deploy the uploaded artifact to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
