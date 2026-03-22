@@ -79,7 +79,8 @@ function initTerminal() {
     '[TASK] Cloudflare WAF rollout plan validated with OWASP + custom rules.',
     '[NOTE] CompTIA Security+ and Okta Professional certifications verified.',
     '[STUDY] MSc Cyber Security modules: risk, forensics, pen testing, cyber law.',
-    '[PROJECT] Phishing Page Analyser and restaurant_analysis repos synced.'
+    '[PROJECT] Phishing Page Analyser and restaurant_analysis repos synced.',
+    '[HINT] Type "email" to open a greeting email composer or "certification" to list badges.'
   ];
   const list = document.getElementById('log-list');
   const form = document.getElementById('log-form');
@@ -95,15 +96,41 @@ function initTerminal() {
     list.parentElement.scrollTop = list.parentElement.scrollHeight;
   };
 
+  const commandHandlers = {
+    email: () => {
+      const greeting = 'Hello Sachin,';
+      const custom = prompt('Enter a message (optional):') || '';
+      const body = encodeURIComponent(`${greeting}\n\n${custom}`);
+      const subject = encodeURIComponent('Hello from your portfolio');
+      logs.push('[CMD] Opening email composer with greeting...');
+      renderLogs();
+      window.location.href = `mailto:sahi2959@gmail.com?subject=${subject}&body=${body}`;
+    },
+    certification: () => {
+      logs.push(
+        '[CERT] CompTIA Security+ — validated foundational security skills.',
+        '[CERT] Okta Professional Certified — proficiency in admin, policies, lifecycle.',
+        '[CERT] Credentials available in certifications section.'
+      );
+      renderLogs();
+    }
+  };
+
   renderLogs();
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const value = input.value.trim();
     if (!value) return;
-    logs.push(`[USER] ${value}`);
+    const command = value.toLowerCase();
+    if (commandHandlers[command]) {
+      logs.push(`[CMD] ${value}`);
+      commandHandlers[command]();
+    } else {
+      logs.push(`[USER] ${value}`);
+      renderLogs();
+    }
     input.value = '';
-    renderLogs();
   });
 }
 
