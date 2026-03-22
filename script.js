@@ -74,6 +74,7 @@ function initProjectReveals() {
 }
 
 const OWNER_NAME = 'Sachin';
+const GREETING_PREFIX = 'Hello';
 
 function initTerminal() {
   const logs = [
@@ -100,7 +101,7 @@ function initTerminal() {
 
   const commandHandlers = {
     email: () => {
-      const greeting = `Hello ${OWNER_NAME},`;
+      const greeting = `${GREETING_PREFIX} ${OWNER_NAME},`;
       const custom = prompt('Enter a message (optional):') || '';
       const body = encodeURIComponent(`${greeting}\n\n${custom}`);
       const subject = encodeURIComponent('Hello from your portfolio');
