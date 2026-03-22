@@ -75,6 +75,7 @@ function initProjectReveals() {
 
 const OWNER_NAME = 'Sachin';
 const GREETING_PREFIX = 'Hello';
+const OWNER_EMAIL = 'sahi2959@gmail.com';
 
 function initTerminal() {
   const logs = [
@@ -100,13 +101,13 @@ function initTerminal() {
   };
 
   const commandHandlers = {
-    email: () => {
+    email: ({ message }) => {
       const greeting = `${GREETING_PREFIX} ${OWNER_NAME},`;
-      const custom = prompt('Enter a message (optional):') || '';
-      const body = encodeURIComponent(`${greeting}\n\n${custom}`);
+      const custom = message || '';
+      const body = encodeURIComponent([greeting, custom].filter(Boolean).join('\n\n'));
       const subject = encodeURIComponent('Hello from your portfolio');
-      logs.push('[CMD] Opening email composer with greeting...');
-      window.location.href = `mailto:sahi2959@gmail.com?subject=${subject}&body=${body}`;
+      logs.push(custom ? '[CMD] Opening email composer with greeting and custom message...' : '[CMD] Opening email composer with greeting...');
+      window.location.href = `mailto:${OWNER_EMAIL}?subject=${subject}&body=${body}`;
     },
     certification: () => {
       logs.push(
@@ -123,10 +124,11 @@ function initTerminal() {
     e.preventDefault();
     const value = input.value.trim();
     if (!value) return;
-    const command = value.toLowerCase();
-    if (commandHandlers[command]) {
-      logs.push(`[CMD] ${command}`);
-      commandHandlers[command]();
+    const [command, ...rest] = value.split(/\s+/);
+    const normalizedCommand = command.toLowerCase();
+    if (commandHandlers[normalizedCommand]) {
+      logs.push(`[CMD] ${normalizedCommand}`);
+      commandHandlers[normalizedCommand]({ raw: value, message: rest.join(' ') });
       renderLogs();
     } else {
       logs.push(`[USER] ${value}`);
