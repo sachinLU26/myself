@@ -15,7 +15,7 @@ const DEFAULT_FONT_SIZE = 16;
 const translations = {
   en: {
     nav_home: 'home',
-    nav_about: 'about',
+    nav_about: 'about me',
     nav_skills: 'skills',
     nav_projects: 'projects',
     nav_timeline: 'timeline',
@@ -42,6 +42,7 @@ const translations = {
     terminal_hint_email: 'open email composer with greeting',
     terminal_hint_cert: 'list certifications',
     terminal_hint_user_entry: 'any text logs as {code} entry',
+    code_user_prefix: '[USER]',
     contact_title: '// contact',
     contact_intro: 'Always excited to collaborate on security research, tooling, and teaching.',
     email_subject: 'Hello from your portfolio',
@@ -79,6 +80,7 @@ const translations = {
     terminal_hint_email: 'abrir correo con saludo',
     terminal_hint_cert: 'listar certificaciones',
     terminal_hint_user_entry: 'cualquier texto se registra como {code} entrada',
+    code_user_prefix: '[USUARIO]',
     contact_title: '// contacto',
     contact_intro: 'Siempre listo para colaborar en investigación, herramientas y enseñanza de seguridad.',
     email_subject: 'Hola desde tu portafolio',
@@ -116,6 +118,7 @@ const translations = {
     terminal_hint_email: 'नमस्ते के साथ ईमेल खोलें',
     terminal_hint_cert: 'प्रमाणपत्र सूचीबद्ध करें',
     terminal_hint_user_entry: 'किसी भी टेक्स्ट को {code} एंट्री के रूप में लॉग किया जाता है',
+    code_user_prefix: '[उपयोगकर्ता]',
     contact_title: '// संपर्क',
     contact_intro: 'सुरक्षा अनुसंधान, टूलिंग और शिक्षण में सहयोग के लिए हमेशा उत्साहित।',
     email_subject: 'आपके पोर्टफोलियो से नमस्ते',
@@ -186,8 +189,12 @@ function applyTranslations(lang) {
     const text = dict[key] || fallback[key];
     if (!text) return;
     const code = el.querySelector('code');
-    // dataset.code (if present) takes precedence over inline code content to keep translations consistent.
-    const codeText = el.dataset.code || (code ? code.textContent : '');
+    const codeKey = el.dataset.codeKey;
+    // Translation for codeKey takes precedence over data-code, which takes precedence over inline code content.
+    const codeText =
+      (codeKey && (dict[codeKey] || fallback[codeKey])) ||
+      el.dataset.code ||
+      (code ? code.textContent : '');
     if (codeText && text.includes('{code}')) {
       const parts = text.split('{code}');
       el.textContent = '';
@@ -342,7 +349,7 @@ function initTerminal() {
     const value = input.value.trim();
     if (!value) return;
     // Normalize consecutive spaces between command and payload (input is already trimmed).
-    const [command, ...rest] = value.split(/\s+/).filter(Boolean);
+    const [command, ...rest] = value.split(/\s+/);
     const normalizedCommand = command.toLowerCase();
     if (commandHandlers[normalizedCommand]) {
       logs.push(`[CMD] ${normalizedCommand}`);
