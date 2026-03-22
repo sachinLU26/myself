@@ -73,6 +73,8 @@ function initProjectReveals() {
   });
 }
 
+const OWNER_NAME = 'Sachin';
+
 function initTerminal() {
   const logs = [
     '[OK] IAM automations loaded (Okta / SailPoint / Beyond Identity).',
@@ -98,7 +100,7 @@ function initTerminal() {
 
   const commandHandlers = {
     email: () => {
-      const greeting = 'Hello Sachin,';
+      const greeting = `Hello ${OWNER_NAME},`;
       const custom = prompt('Enter a message (optional):') || '';
       const body = encodeURIComponent(`${greeting}\n\n${custom}`);
       const subject = encodeURIComponent('Hello from your portfolio');
@@ -124,7 +126,7 @@ function initTerminal() {
     if (!value) return;
     const command = value.toLowerCase();
     if (commandHandlers[command]) {
-      logs.push(`[CMD] ${value}`);
+      logs.push(`[CMD] ${command}`);
       commandHandlers[command]();
     } else {
       logs.push(`[USER] ${value}`);
