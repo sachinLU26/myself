@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const OWNER_NAME = 'Sachin';
 const GREETING_PREFIX = 'Hello';
 const OWNER_EMAIL = 'sahi2959@gmail.com';
+const DEFAULT_FONT_SIZE = 16;
 
 const translations = {
   en: {
@@ -135,7 +136,7 @@ function initAccessibility() {
   const languageSelect = document.getElementById('language-select');
   const minSize = 14;
   const maxSize = 20;
-  let fontSize = 16;
+  let fontSize = DEFAULT_FONT_SIZE;
 
   const setFontSize = (size) => {
     fontSize = Math.min(maxSize, Math.max(minSize, size));
@@ -147,7 +148,7 @@ function initAccessibility() {
       const action = btn.getAttribute('data-font');
       if (action === 'increase') setFontSize(fontSize + 2);
       if (action === 'decrease') setFontSize(fontSize - 2);
-      if (action === 'reset') setFontSize(16);
+      if (action === 'reset') setFontSize(DEFAULT_FONT_SIZE);
     });
   });
 
@@ -172,7 +173,7 @@ function initAccessibility() {
   }
 
   // defaults
-  setFontSize(fontSize);
+  setFontSize(DEFAULT_FONT_SIZE);
   applyLanguage('en');
 }
 
@@ -183,9 +184,10 @@ function applyTranslations(lang) {
     const key = el.getAttribute('data-i18n');
     const text = dict[key] || fallback[key];
     if (!text) return;
-    if (el.querySelector('code') && text.includes('{code}')) {
-      const code = el.querySelector('code');
-      const codeHTML = code ? `<code>${code.textContent}</code>` : '';
+    const code = el.querySelector('code');
+    const codeText = el.dataset.code || (code ? code.textContent : '');
+    if (codeText && text.includes('{code}')) {
+      const codeHTML = `<code>${codeText}</code>`;
       el.innerHTML = text.replace('{code}', codeHTML);
       return;
     }
@@ -329,11 +331,12 @@ function initTerminal() {
     e.preventDefault();
     const value = input.value.trim();
     if (!value) return;
+    // Normalize multi-space input between command and payload.
     const [command, ...rest] = value.split(/\s+/);
     const normalizedCommand = command.toLowerCase();
     if (commandHandlers[normalizedCommand]) {
       logs.push(`[CMD] ${normalizedCommand}`);
-      commandHandlers[normalizedCommand]({ raw: value, message: rest.join(' ') });
+      commandHandlers[normalizedCommand]({ message: rest.join(' ') });
       renderLogs();
     } else {
       logs.push(`[USER] ${value}`);
