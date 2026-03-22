@@ -16,16 +16,40 @@
     <div class="logo">/root> <span class="accent">console</span></div>
     <nav>
       <ul>
-        <li><a href="#hero">home</a></li>
-        <li><a href="#about">about</a></li>
-        <li><a href="#skills">skills</a></li>
-        <li><a href="#projects">projects</a></li>
-        <li><a href="#timeline">timeline</a></li>
-        <li><a href="#terminal">terminal</a></li>
-        <li><a href="#contact">contact</a></li>
+        <li><a href="#hero" data-i18n="nav_home">home</a></li>
+        <li><a href="#about" data-i18n="nav_about">about</a></li>
+        <li><a href="#skills" data-i18n="nav_skills">skills</a></li>
+        <li><a href="#projects" data-i18n="nav_projects">projects</a></li>
+        <li><a href="#timeline" data-i18n="nav_timeline">timeline</a></li>
+        <li><a href="#now" data-i18n="nav_now">now</a></li>
+        <li><a href="#volunteering" data-i18n="nav_volunteering">volunteering</a></li>
+        <li><a href="#certifications" data-i18n="nav_certifications">certifications</a></li>
+        <li><a href="#terminal" data-i18n="nav_terminal">terminal</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">contact</a></li>
       </ul>
     </nav>
   </header>
+
+  <section class="accessibility-bar" aria-label="Accessibility controls">
+    <div class="accessibility-group">
+      <span class="label">text size</span>
+      <button type="button" class="btn ghost" data-font="decrease" aria-label="Decrease text size">A-</button>
+      <button type="button" class="btn ghost" data-font="reset" aria-label="Reset text size">A</button>
+      <button type="button" class="btn ghost" data-font="increase" aria-label="Increase text size">A+</button>
+    </div>
+    <div class="accessibility-group">
+      <span class="label">contrast</span>
+      <button type="button" class="btn ghost" id="contrast-toggle" aria-pressed="false" aria-label="Toggle high contrast">High contrast</button>
+    </div>
+    <div class="accessibility-group">
+      <label class="label" for="language-select">language</label>
+      <select id="language-select" aria-label="Change language">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="hi">हिन्दी</option>
+      </select>
+    </div>
+  </section>
 
   <main>
     <section id="hero" class="panel hero">
@@ -58,10 +82,10 @@
 
     <section id="about" class="panel grid-2">
       <div>
-        <h2>// about_me</h2>
+        <h2 data-i18n="about_title">// about_me</h2>
         <!-- Edit your bio here -->
-        <p class="muted">Over three years of hands-on experience in IAM, cybersecurity automation, cloud security and backend development with practical skills in Okta, SailPoint, Cloudflare WAF and Python (ETL/REST/Flask).</p>
-        <p class="muted">Delivered measurable outcomes, volunteered in a cybersecurity conference, and earned CompTIA Security+. Reliable, organised and patient, I communicate complex ideas clearly, coordinate cross-functional work effectively and thrive under pressure.</p>
+        <p class="muted" data-i18n="about_para1">Over three years of hands-on experience in IAM, cybersecurity automation, cloud security and backend development with practical skills in Okta, SailPoint, Cloudflare WAF and Python (ETL/REST/Flask).</p>
+        <p class="muted" data-i18n="about_para2">Delivered measurable outcomes, volunteered in a cybersecurity conference, and earned CompTIA Security+. Reliable, organised and patient, I communicate complex ideas clearly, coordinate cross-functional work effectively and thrive under pressure.</p>
       </div>
       <div class="badge-list">
         <div class="badge">Okta &amp; SailPoint</div>
@@ -69,6 +93,29 @@
         <div class="badge">Python ETL/Flask</div>
         <div class="badge">Power BI &amp; Automate</div>
         <div class="badge">Identity Governance</div>
+      </div>
+    </section>
+
+    <section id="now" class="panel grid-2">
+      <div>
+        <h2 data-i18n="now_title">// now_playing</h2>
+        <p class="muted" data-i18n="now_intro">Currently designing a cyber exercise for supply chain attacks on critical infrastructure — with a spotlight on nuclear power plants.</p>
+        <p class="muted" data-i18n="now_goal">Goal: raise assurance against supply-chain pivots that silently cascade into OT environments.</p>
+        <div class="chip-row">
+          <span class="chip">supply chain</span>
+          <span class="chip">purple teaming</span>
+          <span class="chip">OT resilience</span>
+        </div>
+      </div>
+      <div class="detail-card">
+        <p class="label" data-i18n="now_cta_title">Want to collaborate?</p>
+        <p class="muted" data-i18n="now_cta_copy">If you have expertise in OT detection, incident drills, or nuclear sector nuances, I’d love to sync.</p>
+        <a
+          class="btn primary"
+          id="now-cta-link"
+          href="mailto:sahi2959@gmail.com?subject=Collaboration%20on%20Supply%20Chain%20Cyber%20Exercise&body=Hi%20Sachin%2C%0A%0AInterested%20in%20collaborating%20on%20your%20nuclear%20supply%20chain%20exercise.%20My%20focus%20areas%3A%0A-%20"
+          data-i18n="now_cta_btn">connect to collaborate</a>
+        <p class="muted mini-note" data-i18n="now_cta_note">Bonus points if you bring tabletop stories or chaos test ideas.</p>
       </div>
     </section>
 
@@ -239,10 +286,50 @@
       </div>
     </section>
 
+    <section id="volunteering" class="panel">
+      <h2 data-i18n="volunteering_title">// volunteering</h2>
+      <div class="grid-2">
+        <div>
+          <p class="muted">Giving back to the community through conference support and security enablement.</p>
+        </div>
+        <div class="card-list">
+          <article class="detail-card">
+            <p class="label">Nullcon 2025 — Audio-Visual Volunteer</p>
+            <p class="muted">AV team member handling setup, live troubleshooting, and speaker liaison to keep sessions running smoothly.</p>
+            <a class="chip" href="https://credsverse.com/credentials/df068461-f0bb-4b25-a61b-6b15b3bfc2f7" target="_blank" rel="noopener noreferrer">verify credential</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications" class="panel">
+      <h2 data-i18n="certifications_title">// certifications</h2>
+      <div class="grid-2">
+        <article class="detail-card">
+          <p class="label">CompTIA Security+</p>
+          <p class="muted">Validated foundational security skills across network, cloud and identity domains.</p>
+          <a class="chip" href="https://www.credly.com/badges/97c55943-3ca9-47e2-a503-68696904717f/public_url" target="_blank" rel="noopener noreferrer">view badge</a>
+        </article>
+        <article class="detail-card">
+          <p class="label">Okta Professional Certified</p>
+          <p class="muted">Proved proficiency in administering Okta tenants, policies, lifecycle and access workflows.</p>
+          <a class="chip" href="https://www.credly.com/badges/e516eb40-10db-4156-a263-3e79a41e7e3d/public_url" target="_blank" rel="noopener noreferrer">view badge</a>
+        </article>
+      </div>
+    </section>
+
     <section id="terminal" class="panel">
       <div class="terminal-head">
-        <h2>// terminal_feed</h2>
-        <p class="muted">Recent activity logs</p>
+        <h2 data-i18n="terminal_title">// terminal_feed</h2>
+        <p class="muted" data-i18n="terminal_subtitle">Recent activity logs</p>
+      </div>
+      <div class="terminal-legend">
+        <p class="label" data-i18n="terminal_legend">legend</p>
+        <ul>
+          <li><span class="chip">email</span> <span data-i18n="terminal_hint_email">open email composer with greeting</span></li>
+          <li><span class="chip">certification</span> <span data-i18n="terminal_hint_cert">list certifications</span></li>
+          <li data-i18n="terminal_hint_user_entry" data-code-key="code_user_prefix" data-code="[USER]"></li>
+        </ul>
       </div>
       <div class="terminal-window" role="log" aria-live="polite">
         <ul id="log-list"></ul>
@@ -256,8 +343,8 @@
 
     <section id="contact" class="panel grid-2">
       <div>
-        <h2>// contact</h2>
-        <p class="muted">Always excited to collaborate on security research, tooling, and teaching.</p>
+        <h2 data-i18n="contact_title">// contact</h2>
+        <p class="muted" data-i18n="contact_intro">Always excited to collaborate on security research, tooling, and teaching.</p>
       </div>
       <div class="contact-grid">
         <!-- Update contact links here -->
@@ -287,27 +374,6 @@
           <div>
             <p class="label">phone</p>
             <p>+44-7393197982</p>
-          </div>
-        </a>
-        <a class="contact-card" href="https://www.credly.com/badges/97c55943-3ca9-47e2-a503-68696904717f/public_url" target="_blank" rel="noopener noreferrer">
-          <span>🎖️</span>
-          <div>
-            <p class="label">certification</p>
-            <p>CompTIA Security+</p>
-          </div>
-        </a>
-        <a class="contact-card" href="https://www.credly.com/badges/e516eb40-10db-4156-a263-3e79a41e7e3d/public_url" target="_blank" rel="noopener noreferrer">
-          <span>🎖️</span>
-          <div>
-            <p class="label">certification</p>
-            <p>Okta Professional Certified</p>
-          </div>
-        </a>
-        <a class="contact-card" href="https://credsverse.com/credentials/df068461-f0bb-4b25-a61b-6b15b3bfc2f7" target="_blank" rel="noopener noreferrer">
-          <span>🎫</span>
-          <div>
-            <p class="label">volunteering</p>
-            <p>Nullcon 2025 AV Team</p>
           </div>
         </a>
       </div>
