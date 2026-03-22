@@ -40,10 +40,14 @@ const translations = {
     terminal_legend: 'legend',
     terminal_hint_email: 'open email composer with greeting',
     terminal_hint_cert: 'list certifications',
-    terminal_hint_user: 'any text logs as',
-    terminal_hint_entry: 'entry',
+    terminal_hint_user_entry: 'any text logs as {code} entry',
     contact_title: '// contact',
-    contact_intro: 'Always excited to collaborate on security research, tooling, and teaching.'
+    contact_intro: 'Always excited to collaborate on security research, tooling, and teaching.',
+    email_subject: 'Hello from your portfolio',
+    email_log_with_custom: '[CMD] Opening email composer with greeting and custom message...',
+    email_log_no_custom: '[CMD] Opening email composer with greeting...',
+    now_email_subject: 'Collaboration on Supply Chain Cyber Exercise',
+    now_email_body: 'Hi Sachin,\n\nInterested in collaborating on your nuclear supply chain exercise. My focus areas:\n- '
   },
   es: {
     nav_home: 'inicio',
@@ -73,10 +77,14 @@ const translations = {
     terminal_legend: 'leyenda',
     terminal_hint_email: 'abrir correo con saludo',
     terminal_hint_cert: 'listar certificaciones',
-    terminal_hint_user: 'cualquier texto se registra como',
-    terminal_hint_entry: 'entrada',
+    terminal_hint_user_entry: 'cualquier texto se registra como {code} entrada',
     contact_title: '// contacto',
-    contact_intro: 'Siempre listo para colaborar en investigación, herramientas y enseñanza de seguridad.'
+    contact_intro: 'Siempre listo para colaborar en investigación, herramientas y enseñanza de seguridad.',
+    email_subject: 'Hola desde tu portafolio',
+    email_log_with_custom: '[CMD] Abriendo el correo con saludo y mensaje personalizado...',
+    email_log_no_custom: '[CMD] Abriendo el correo con saludo...',
+    now_email_subject: 'Colaboración en ejercicio de cadena de suministro',
+    now_email_body: 'Hola Sachin,\n\nInteresado en colaborar en tu ejercicio de cadena de suministro para nuclear. Mis áreas de enfoque:\n- '
   },
   hi: {
     nav_home: 'होम',
@@ -106,12 +114,18 @@ const translations = {
     terminal_legend: 'लीजेंड',
     terminal_hint_email: 'नमस्ते के साथ ईमेल खोलें',
     terminal_hint_cert: 'प्रमाणपत्र सूचीबद्ध करें',
-    terminal_hint_user: 'किसी भी टेक्स्ट को',
-    terminal_hint_entry: 'एंट्री के रूप में लॉग किया जाता है',
+    terminal_hint_user_entry: 'किसी भी टेक्स्ट को {code} एंट्री के रूप में लॉग किया जाता है',
     contact_title: '// संपर्क',
-    contact_intro: 'सुरक्षा अनुसंधान, टूलिंग और शिक्षण में सहयोग के लिए हमेशा उत्साहित।'
+    contact_intro: 'सुरक्षा अनुसंधान, टूलिंग और शिक्षण में सहयोग के लिए हमेशा उत्साहित।',
+    email_subject: 'आपके पोर्टफोलियो से नमस्ते',
+    email_log_with_custom: '[CMD] अभिवादन और कस्टम संदेश के साथ ईमेल खोल रहा हूं...',
+    email_log_no_custom: '[CMD] अभिवादन के साथ ईमेल खोल रहा हूं...',
+    now_email_subject: 'सप्लाई चेन साइबर एक्सरसाइज सहयोग',
+    now_email_body: 'Hi Sachin,\n\nमैं आपके परमाणु सप्लाई चेन अभ्यास पर सहयोग में रुचि रखता हूं। मेरे फोकस क्षेत्र:\n- '
   }
 };
+
+let currentLanguage = 'en';
 
 function initAccessibility() {
   const root = document.documentElement;
@@ -145,7 +159,9 @@ function initAccessibility() {
   }
 
   const applyLanguage = (lang) => {
+    currentLanguage = lang;
     applyTranslations(lang);
+    updateMailtoLinks(lang);
     if (languageSelect) languageSelect.value = lang;
   };
 
@@ -167,12 +183,32 @@ function applyTranslations(lang) {
     const key = el.getAttribute('data-i18n');
     const text = dict[key] || fallback[key];
     if (!text) return;
-    if ('value' in el && el.tagName === 'INPUT') {
+    if (el.querySelector('code') && text.includes('{code}')) {
+      const code = el.querySelector('code');
+      const codeHTML = code ? `<code>${code.textContent}</code>` : '';
+      el.innerHTML = text.replace('{code}', codeHTML);
+      return;
+    }
+    if ('value' in el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT')) {
       el.value = text;
     } else {
       el.textContent = text;
     }
   });
+}
+
+function updateMailtoLinks(lang) {
+  const dict = translations[lang] || translations.en;
+  const subject = dict.now_email_subject || 'Collaboration on Supply Chain Cyber Exercise';
+  const body = dict.now_email_body || 'Hi Sachin,\n\nInterested in collaborating on your nuclear supply chain exercise. My focus areas:\n- ';
+  const cta = document.getElementById('now-cta-link');
+  if (cta) {
+    cta.setAttribute('href', buildMailto(OWNER_EMAIL, subject, body));
+  }
+}
+
+function buildMailto(email, subject, body) {
+  return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function initSmoothScroll() {
@@ -270,10 +306,13 @@ function initTerminal() {
     email: ({ message }) => {
       const greeting = `${GREETING_PREFIX} ${OWNER_NAME},`;
       const custom = message || '';
-      const body = encodeURIComponent([greeting, custom].filter(Boolean).join('\n\n'));
-      const subject = encodeURIComponent('Hello from your portfolio');
-      logs.push(custom ? '[CMD] Opening email composer with greeting and custom message...' : '[CMD] Opening email composer with greeting...');
-      window.location.href = `mailto:${OWNER_EMAIL}?subject=${subject}&body=${body}`;
+      const dict = translations[currentLanguage] || translations.en;
+      const subjectText = dict.email_subject || 'Hello from your portfolio';
+      const logWithCustom = dict.email_log_with_custom || '[CMD] Opening email composer with greeting and custom message...';
+      const logNoCustom = dict.email_log_no_custom || '[CMD] Opening email composer with greeting...';
+      const body = [greeting, custom].filter(Boolean).join('\n\n');
+      logs.push(custom ? logWithCustom : logNoCustom);
+      window.location.href = buildMailto(OWNER_EMAIL, subjectText, body);
     },
     certification: () => {
       logs.push(
