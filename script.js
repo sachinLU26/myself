@@ -190,7 +190,7 @@ function applyTranslations(lang) {
     if (!text) return;
     const code = el.querySelector('code');
     const codeKey = el.dataset.codeKey;
-    // Translation for codeKey takes precedence over data-code, which takes precedence over inline code content.
+    // Precedence: translation for codeKey > data-code attribute > inline <code> content.
     const codeText =
       (codeKey && (dict[codeKey] || fallback[codeKey])) ||
       el.dataset.code ||
@@ -297,6 +297,29 @@ function initProjectReveals() {
   });
 }
 
+function createCommandHandlers(logs, renderLogs) {
+  return {
+    email: ({ message }) => {
+      const greeting = `${GREETING_PREFIX} ${OWNER_NAME},`;
+      const custom = message || '';
+      const dict = translations[currentLanguage] || translations.en;
+      const subjectText = dict.email_subject || 'Hello from your portfolio';
+      const logWithCustom = dict.email_log_with_custom || '[CMD] Opening email composer with greeting and custom message...';
+      const logNoCustom = dict.email_log_no_custom || '[CMD] Opening email composer with greeting...';
+      const body = [greeting, custom].filter(Boolean).join('\n\n');
+      logs.push(custom ? logWithCustom : logNoCustom);
+      window.location.href = buildMailto(OWNER_EMAIL, subjectText, body);
+    },
+    certification: () => {
+      logs.push(
+        '[CERT] CompTIA Security+ — validated foundational security skills.',
+        '[CERT] Okta Professional Certified — proficiency in admin, policies, lifecycle.',
+        '[CERT] Credentials available in certifications section.'
+      );
+    }
+  };
+}
+
 function initTerminal() {
   const logs = [
     '[OK] IAM automations loaded (Okta / SailPoint / Beyond Identity).',
@@ -321,26 +344,7 @@ function initTerminal() {
     list.parentElement.scrollTop = list.parentElement.scrollHeight;
   };
 
-  const commandHandlers = {
-    email: ({ message }) => {
-      const greeting = `${GREETING_PREFIX} ${OWNER_NAME},`;
-      const custom = message || '';
-      const dict = translations[currentLanguage] || translations.en;
-      const subjectText = dict.email_subject || 'Hello from your portfolio';
-      const logWithCustom = dict.email_log_with_custom || '[CMD] Opening email composer with greeting and custom message...';
-      const logNoCustom = dict.email_log_no_custom || '[CMD] Opening email composer with greeting...';
-      const body = [greeting, custom].filter(Boolean).join('\n\n');
-      logs.push(custom ? logWithCustom : logNoCustom);
-      window.location.href = buildMailto(OWNER_EMAIL, subjectText, body);
-    },
-    certification: () => {
-      logs.push(
-        '[CERT] CompTIA Security+ — validated foundational security skills.',
-        '[CERT] Okta Professional Certified — proficiency in admin, policies, lifecycle.',
-        '[CERT] Credentials available in certifications section.'
-      );
-    }
-  };
+  const commandHandlers = createCommandHandlers(logs, renderLogs);
 
   renderLogs();
 
@@ -348,7 +352,7 @@ function initTerminal() {
     e.preventDefault();
     const value = input.value.trim();
     if (!value) return;
-    // Normalize consecutive spaces between command and payload (input is already trimmed).
+    // Normalize internal consecutive spaces between command and payload (input is already trimmed).
     const [command, ...rest] = value.split(/\s+/);
     const normalizedCommand = command.toLowerCase();
     if (commandHandlers[normalizedCommand]) {
