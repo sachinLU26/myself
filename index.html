@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sachin Sahil | Cybersecurity Student</title>
+  <title>🛡️ Sachin Sahil | Cybersecurity Student</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -13,21 +13,23 @@
   <canvas id="matrix"></canvas>
   <div class="scanlines"></div>
   <header class="topbar">
-    <div class="logo">/root> <span class="accent">console</span></div>
-    <nav>
-      <ul>
-        <li><a href="#hero" data-i18n="nav_home">home</a></li>
-        <li><a href="#about" data-i18n="nav_about">about</a></li>
-        <li><a href="#skills" data-i18n="nav_skills">skills</a></li>
-        <li><a href="#projects" data-i18n="nav_projects">projects</a></li>
-        <li><a href="#timeline" data-i18n="nav_timeline">timeline</a></li>
-        <li><a href="#now" data-i18n="nav_now">now</a></li>
-        <li><a href="#volunteering" data-i18n="nav_volunteering">volunteering</a></li>
-        <li><a href="#certifications" data-i18n="nav_certifications">certifications</a></li>
-        <li><a href="#terminal" data-i18n="nav_terminal">terminal</a></li>
-        <li><a href="#contact" data-i18n="nav_contact">contact</a></li>
-      </ul>
-    </nav>
+    <div class="topbar-inner">
+      <div class="logo">/root> <span class="accent">console</span></div>
+      <nav>
+        <ul>
+          <li><a href="#hero" data-i18n="nav_home">home</a></li>
+          <li><a href="#about" data-i18n="nav_about">about</a></li>
+          <li><a href="#now" data-i18n="nav_now">now</a></li>
+          <li><a href="#timeline" data-i18n="nav_timeline">timeline</a></li>
+          <li><a href="#skills" data-i18n="nav_skills">skills</a></li>
+          <li><a href="#projects" data-i18n="nav_projects">projects</a></li>
+          <li><a href="#volunteering" data-i18n="nav_volunteering">volunteering</a></li>
+          <li><a href="#certifications" data-i18n="nav_certifications">certifications</a></li>
+          <li><a href="#terminal" data-i18n="nav_terminal">terminal</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <section class="accessibility-bar" aria-label="Accessibility controls">
@@ -42,11 +44,27 @@
       <button type="button" class="btn ghost" id="contrast-toggle" aria-pressed="false" aria-label="Toggle high contrast">High contrast</button>
     </div>
     <div class="accessibility-group">
+      <label class="label" for="theme-select">theme</label>
+      <select id="theme-select" aria-label="Change theme">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="neon">Neon</option>
+        <option value="grey">Grey</option>
+      </select>
+    </div>
+    <div class="accessibility-group">
       <label class="label" for="language-select">language</label>
       <select id="language-select" aria-label="Change language">
         <option value="en">English</option>
         <option value="es">Español</option>
         <option value="hi">हिन्दी</option>
+        <option value="de">Deutsch</option>
+        <option value="it">Italiano</option>
+        <option value="fr">Français</option>
+        <option value="nl">Nederlands</option>
+        <option value="cy">Cymraeg</option>
+        <option value="ga">Gaeilge</option>
+        <option value="sv">Svenska</option>
       </select>
     </div>
   </section>
@@ -56,7 +74,10 @@
       <div class="hero-text">
         <!-- Edit your name here -->
         <p class="eyebrow">ACCESS GRANTED</p>
-        <h1 class="glitch" data-text="Sachin Sahil">Sachin Sahil</h1>
+        <div class="hero-title">
+          <span class="hero-icon" aria-hidden="true">🛡️</span>
+          <h1 class="glitch" data-text="Sachin Sahil">Sachin Sahil</h1>
+        </div>
         <!-- Edit your tagline here -->
         <p class="tagline"><span id="typing"></span><span class="cursor">▋</span></p>
         <div class="hero-actions">
@@ -116,110 +137,6 @@
           href="mailto:sahi2959@gmail.com?subject=Collaboration%20on%20Supply%20Chain%20Cyber%20Exercise&body=Hi%20Sachin%2C%0A%0AInterested%20in%20collaborating%20on%20your%20nuclear%20supply%20chain%20exercise.%20My%20focus%20areas%3A%0A-%20"
           data-i18n="now_cta_btn">connect to collaborate</a>
         <p class="muted mini-note" data-i18n="now_cta_note">Bonus points if you bring tabletop stories or chaos test ideas.</p>
-      </div>
-    </section>
-
-    <section id="skills" class="panel">
-      <h2>// skills_matrix</h2>
-      <div class="skills-grid">
-        <!-- Update skills and percentages here -->
-        <div class="skill">
-          <div class="skill-top">
-            <span>IAM (Okta / SailPoint / Beyond Identity)</span>
-            <span>90%</span>
-          </div>
-          <div class="bar"><span style="width: 90%"></span></div>
-        </div>
-        <div class="skill">
-          <div class="skill-top">
-            <span>Cloud WAF (Cloudflare / ThreatX)</span>
-            <span>88%</span>
-          </div>
-          <div class="bar"><span style="width: 88%"></span></div>
-        </div>
-        <div class="skill">
-          <div class="skill-top">
-            <span>Python Automation &amp; Flask APIs</span>
-            <span>87%</span>
-          </div>
-          <div class="bar"><span style="width: 87%"></span></div>
-        </div>
-        <div class="skill">
-          <div class="skill-top">
-            <span>Data &amp; Reporting (ETL, Power BI, Automate)</span>
-            <span>82%</span>
-          </div>
-          <div class="bar"><span style="width: 82%"></span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="panel">
-      <h2>// projects_log</h2>
-      <div class="projects-grid">
-        <!-- Update project cards here -->
-        <article class="project-card">
-          <div class="card-header">
-            <p class="label">project</p>
-            <h3>Phishing Page Analyser</h3>
-          </div>
-          <p class="muted">GUI-based application to analyse a webpage by parsing its content and showing details of external redirects.</p>
-          <div class="chip-row">
-            <span class="chip">Python</span>
-            <span class="chip">GUI</span>
-            <span class="chip">Security Automation</span>
-          </div>
-          <button class="btn ghost reveal" aria-expanded="false">show log</button>
-          <div class="reveal-content" hidden>
-            <ul>
-              <li>Parses target page content and surfaces outbound redirects.</li>
-              <li>Provides a GUI workflow for quick inspection.</li>
-              <li>Open-sourced at github.com/sachin2912/Phishing-page-analyser.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="card-header">
-            <p class="label">project</p>
-            <h3>Restaurant Analysis (ML)</h3>
-          </div>
-          <p class="muted">Built a recommendation model predicting ratings and costs based on restaurant features.</p>
-          <div class="chip-row">
-            <span class="chip">Python</span>
-            <span class="chip">Machine Learning</span>
-            <span class="chip">Recommendation</span>
-          </div>
-          <button class="btn ghost reveal" aria-expanded="false">show log</button>
-          <div class="reveal-content" hidden>
-            <ul>
-              <li>Predicts restaurant ratings and costs from available features.</li>
-              <li>Applies ML-based recommendations to surface likely outcomes.</li>
-              <li>Source: github.com/sachin2912/restaurant_analysis.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="card-header">
-            <p class="label">project</p>
-            <h3>Cloudflare WAF Migration</h3>
-          </div>
-          <p class="muted">Migrated enterprise WAF from ThreatX to Cloudflare with OWASP and custom protections while improving application-layer coverage.</p>
-          <div class="chip-row">
-            <span class="chip">Cloudflare WAF</span>
-            <span class="chip">OWASP</span>
-            <span class="chip">Automation</span>
-          </div>
-          <button class="btn ghost reveal" aria-expanded="false">show log</button>
-          <div class="reveal-content" hidden>
-            <ul>
-              <li>Mapped rules and staged rollouts from ThreatX to Cloudflare.</li>
-              <li>Implemented OWASP and custom protections while reducing false positives.</li>
-              <li>Provided smoother user experience with improved application-layer coverage.</li>
-            </ul>
-          </div>
-        </article>
       </div>
     </section>
 
@@ -392,6 +309,110 @@
       <p class="muted timeline-tagline">They say diversify your investment, don't put all your eggs in one basket 🧺</p>
     </section>
 
+    <section id="skills" class="panel">
+      <h2>// skills_matrix</h2>
+      <div class="skills-grid">
+        <!-- Update skills and percentages here -->
+        <div class="skill">
+          <div class="skill-top">
+            <span>IAM (Okta / SailPoint / Beyond Identity)</span>
+            <span>90%</span>
+          </div>
+          <div class="bar"><span style="width: 90%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top">
+            <span>Cloud WAF (Cloudflare / ThreatX)</span>
+            <span>88%</span>
+          </div>
+          <div class="bar"><span style="width: 88%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top">
+            <span>Python Automation &amp; Flask APIs</span>
+            <span>87%</span>
+          </div>
+          <div class="bar"><span style="width: 87%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top">
+            <span>Data &amp; Reporting (ETL, Power BI, Automate)</span>
+            <span>82%</span>
+          </div>
+          <div class="bar"><span style="width: 82%"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="panel">
+      <h2>// projects_log</h2>
+      <div class="projects-grid">
+        <!-- Update project cards here -->
+        <article class="project-card">
+          <div class="card-header">
+            <p class="label">project</p>
+            <h3>Phishing Page Analyser</h3>
+          </div>
+          <p class="muted">GUI-based application to analyse a webpage by parsing its content and showing details of external redirects.</p>
+          <div class="chip-row">
+            <span class="chip">Python</span>
+            <span class="chip">GUI</span>
+            <span class="chip">Security Automation</span>
+          </div>
+          <button class="btn ghost reveal" aria-expanded="false">show log</button>
+          <div class="reveal-content" hidden>
+            <ul>
+              <li>Parses target page content and surfaces outbound redirects.</li>
+              <li>Provides a GUI workflow for quick inspection.</li>
+              <li>Open-sourced at github.com/sachin2912/Phishing-page-analyser.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="card-header">
+            <p class="label">project</p>
+            <h3>Restaurant Analysis (ML)</h3>
+          </div>
+          <p class="muted">Built a recommendation model predicting ratings and costs based on restaurant features.</p>
+          <div class="chip-row">
+            <span class="chip">Python</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Recommendation</span>
+          </div>
+          <button class="btn ghost reveal" aria-expanded="false">show log</button>
+          <div class="reveal-content" hidden>
+            <ul>
+              <li>Predicts restaurant ratings and costs from available features.</li>
+              <li>Applies ML-based recommendations to surface likely outcomes.</li>
+              <li>Source: github.com/sachin2912/restaurant_analysis.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="card-header">
+            <p class="label">project</p>
+            <h3>Cloudflare WAF Migration</h3>
+          </div>
+          <p class="muted">Migrated enterprise WAF from ThreatX to Cloudflare with OWASP and custom protections while improving application-layer coverage.</p>
+          <div class="chip-row">
+            <span class="chip">Cloudflare WAF</span>
+            <span class="chip">OWASP</span>
+            <span class="chip">Automation</span>
+          </div>
+          <button class="btn ghost reveal" aria-expanded="false">show log</button>
+          <div class="reveal-content" hidden>
+            <ul>
+              <li>Mapped rules and staged rollouts from ThreatX to Cloudflare.</li>
+              <li>Implemented OWASP and custom protections while reducing false positives.</li>
+              <li>Provided smoother user experience with improved application-layer coverage.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section id="volunteering" class="panel">
       <h2 data-i18n="volunteering_title">// volunteering</h2>
       <div class="grid-2">
@@ -480,7 +501,20 @@
   </main>
 
   <footer class="panel footer">
-    <p>Built with HTML + CSS + JS — styled like a retro console. Stay curious.</p>
+    <div class="footer-inner">
+      <div class="footer-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" role="presentation">
+          <path d="M12 34c0 8 9 16 20 16s20-8 20-16v-4H12v4z" fill="#d99d5b"></path>
+          <path d="M16 30c0-6 6-12 16-12s16 6 16 12H16z" fill="#f6e6b4"></path>
+          <path d="M10 28h44a2 2 0 012 2v2a2 2 0 01-2 2H10a2 2 0 01-2-2v-2a2 2 0 012-2z" fill="#b76e2a"></path>
+          <circle cx="22" cy="24" r="2" fill="#f2cf75"></circle>
+          <circle cx="32" cy="22" r="2" fill="#f2cf75"></circle>
+          <circle cx="42" cy="25" r="2" fill="#f2cf75"></circle>
+          <path d="M18 44c4 3 10 6 14 6s10-3 14-6" stroke="#8a4b24" stroke-width="2" fill="none" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <p class="footer-text">Stay curious and enjoy Biryani.</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
